@@ -1,0 +1,31 @@
+
+<h1 class="display-6 text-center">Locked Account<div class="p-3 d-inline"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div></h1>
+<!-- List of all locked accounts -->
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 table-responsive">
+        <table class="table">
+          <thead class="thead">
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of this.lockedUsers; let i = index">
+              <td>{{i+1}}</td>
+              <!-- <th scope="row">{{deptcomplaint.complaintId}}</th> -->
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+              <td><a class="btn btn-warning" (click)="activateAccount(user.email)">Activate Account</a></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,39 @@
+<!-- list of all departments -->
+<div class="container-fluid">
+  <div class="row  justify-content-center">
+    <div class="col-md-10 col-xl-10 col-sm-12">
+
+            <div class>
+                <h1 class="display-6 text-center"> Manage Department<div class="p-3 d-inline"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div></h1>
+            </div>
+    <div class="container-fluid">
+                <section>
+                    <div class="table-responsive">
+                        <table class="table text-center table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Department Id</th>
+                                    <th scope="col" class="text-center">Department Name</th>
+                                    <th scope="col" class="text-center">Description</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dept of deptList; let i = index">
+                                    <td  class="text-center">{{dept.departmentId}}</td>
+                                    <td class="">{{dept.departmentName}}</td>
+                                    <td class="">{{dept.description}}</td>
+                                    <td class="text-center">
+                       <!-- <a routerLink="/updateDepartment/{{dept.departmentId}}"><i class="fa fa-pencil-square-o m-2 updateIcon"></i></a>&nbsp;&nbsp;&nbsp; -->
+                    <a (click)="updateDepartment(dept.departmentId)"><i
+                        class="fa fa-pencil-square-o m-2 updateIcon"></i></a>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-trash-o m-2 deleteIcon" (click)=" deleteDepartment(dept.departmentId,i)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>

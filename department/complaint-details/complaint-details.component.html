@@ -1,0 +1,51 @@
+<!--All details of complaint  -->
+<div class="container">
+  <div class="row">
+    <table class="table table-hover">
+      <thead class="thead ">
+        <tr>
+          <th colspan="2"><h1 class="display-6 text-center"> Complaint Details<div class="p-3 d-inline"><i class="fa fa-info-circle" aria-hidden="true"></i></div></h1></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="col">Name</td>
+          <td>{{complaint.showCitizen?.name}}</td>
+        </tr>
+        <tr>
+          <td scope="col">Email</td>
+          <td>{{complaint.showCitizen?.email}}</td>
+        </tr>
+        <tr>
+          <td scope="col">Number</td>
+          <td>{{complaint.showCitizen?.mobileNo}}</td>
+        </tr>
+        <tr>
+          <td scope="col">Complaint Message</td>
+          <td>{{complaint.complaintMessage}}</td>
+        </tr>
+        <tr>
+          <td scope="col">Complaint Date</td>
+          <td>{{complaint.createdAt| date}} </td>
+        </tr>
+        <tr>
+          <td scope="col">Document</td>
+          <td><a class="text-dark mb-1" *ngIf="complaint.documentPath != null && complaint.documentPath != ''"
+              [href]="this.fileBaseUrl+complaint.documentPath"><div class="d-inline">{{complaint.documentPath }} <i class="fa fa-download" aria-hidden="true"></i></div></a></td>
+          <!-- <td>{{complaint.documentPath ? complaint.documentPath : 'NOT AVALABLE' }}</td> -->
+        </tr>
+        <tr>
+          <td scope="col">Status</td>
+          <td>{{complaint.complaintStatus}}</td>
+        </tr>
+        <tr>
+          <td scope="col">Address</td>
+          <td>{{complaint.address?.houseNo}}, {{complaint.address?.landmark}},
+            {{complaint.address?.pincode}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

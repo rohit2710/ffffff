@@ -1,0 +1,67 @@
+<!-- show all complaints of department -->
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 class="display-6 text-center">Department Report <div class="p-3 d-inline"><i class="fa fa-book" aria-hidden="true"></i></div></h1>
+  </div>
+    <div class="col-sm-6 my-auto" *ngIf="this.complaintCountByStatus != undefined" >
+      <button type="button "class="btn btn-outline-secondary text-dark btn-sm m-1"  
+      *ngFor="let statusCount of this.complaintCountByStatus.statusData"
+      (click)="getComplaintsByStatus(statusCount.status,statusCount.count)"> {{statusCount.status}}<span
+        class="badge bg-light text-dark">{{statusCount.count}} </span></button>
+        <button type="button"class="btn btn-outline-secondary text-dark btn-sm m-1"  
+        (click)="getAllDeptComplaints()"> ALL Complaints<span
+          class="badge bg-light text-dark">{{this.complaintCountByStatus.totalComplaint}} </span></button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="table-responsive"></div>
+      <table class="table table-hover">
+        <thead class="thead  ">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">UserEmail</th>
+            <th scope="col">Message</th>
+            <th scope="col">Date</th>
+            <th scope="col">ViewDocs</th>
+            <th scope="col">Status</th>
+            <!-- <th scope="col">Resolved At</th> -->
+            <th></th>
+            <th scope="col">Address</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deptcomplaint of complaints   ; let i = index">
+            <!-- <th>{{i+1}}</th> -->
+            <th scope="row">{{deptcomplaint.complaintId}}</th>
+            <td>{{deptcomplaint.showCitizen?.name}}</td>
+            <td>{{deptcomplaint.showCitizen?.email}}</td>
+            <td>{{deptcomplaint.complaintMessage}}</td>
+            <td>{{deptcomplaint.createdAt|date}}</td>
+            <td><a class="text-dark mb-1 " *ngIf="deptcomplaint.documentPath != null && deptcomplaint.documentPath != ''" [href]="this.fileBaseUrl+deptcomplaint.documentPath" ><div class="d-inline">{{deptcomplaint.documentPath  ? deptcomplaint.documentPath : 'NOT AVALABLE' }} <i class="fa fa-download" aria-hidden="true"></i></div></a></td>
+            <!-- <td>{{deptcomplaint.documentPath ? deptcomplaint.documentPath : 'NOT AVALABLE'}}</td> -->
+            <td>{{deptcomplaint.complaintStatus }}</td>
+            <td></td>
+            <td>{{deptcomplaint.address?.houseNo}}, {{deptcomplaint.address?.landmark}},
+              {{deptcomplaint.address?.pincode}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="" *ngIf="totalItemsForPage != undefined  ">
+    <app-pagination  [itemsPerPage]="this.itemsPerPage" [totalItems]="this.totalItemsForPage" (pageDataRequest)=(getComplaintDataForPagination()) #pagination></app-pagination>
+  </div>
+</div>

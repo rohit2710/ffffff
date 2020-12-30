@@ -1,0 +1,63 @@
+<!-- all the complaints will be loaded -->
+<div class="container">
+  <div class="row my-2">
+    <div class="col-sm-6">
+      <h1 class="display-6 text-center">Admin Report <div class="p-3 d-inline"><i class="fa fa-book"
+            aria-hidden="true"></i></div>
+      </h1>
+    </div>
+    <div class="col-sm-6 my-auto">
+      <select class="form-select" #departmentlist id="inputGroupSelect01" (change)="searchDept(departmentlist.value)">
+        <option value="" selected disabled hidden>Choose Department</option>
+        <option *ngFor="let dept of this.departments" value="{{dept.departmentName }}">
+          {{dept.departmentName}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 table-responsive">
+      <table class="table text-center table-hover">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">UserEmail</th>
+            <th scope="col">Message</th>
+            <th scope="col">Date</th>
+            <th scope="col">ViewDocs</th>
+            <th scope="col">Status</th>
+            <th scope="col">Department Name</th>
+            <!-- <th scope="col">Resolved At</th> -->
+            <th></th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admincomplaint of (adminComplaints | searchPipe:searchKey ) ; let i = index">
+            <!-- <th>{{i+1}}</th> -->
+            <th scope="row">{{admincomplaint.complaintId}}</th>
+            <td>{{admincomplaint.citizenDTO?.name}}</td>
+            <td>{{admincomplaint.citizenDTO?.email}}</td>
+            <td>{{admincomplaint.complaintMessage}}</td>
+            <td>{{admincomplaint.createdAt|date}}</td>
+            <td><a class="text-dark mb-1 "  [href]="this.fileBaseUrl+admincomplaint.documentPath" ><div class="d-inline">{{admincomplaint.documentPath  ? admincomplaint.documentPath : 'NOT AVALABLE' }} <i *ngIf="admincomplaint.documentPath != null && admincomplaint.documentPath != ''" class="fa fa-download" aria-hidden="true"></i></div></a></td>
+
+            <!-- <td>{{admincomplaint.documentPath ? admincomplaint.documentPath : 'NOT AVALABLE'}}</td> -->
+            <td>{{admincomplaint.complaintStatus }}</td>
+            <td>{{admincomplaint.departmentName? admincomplaint.departmentName : 'NOT ASSIGNED'}}</td>
+            <td></td>
+            <td>{{admincomplaint.address?.houseNo}}, {{admincomplaint.address?.landmark}},
+              {{admincomplaint.address?.pincode}}</td>
+          </tr>
+        </tbody>
+        <!-- <p class="text-center">{{msg}}</p> -->
+      </table>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="totalItemsForPage != undefined">
+    <app-pagination  [itemsPerPage]="this.itemsPerPage" [totalItems]="this.totalItemsForPage" (pageDataRequest)=(getComplaintDataForPagination()) #pagination></app-pagination>
+  </div> -->
+<!-- <app-pagination [totalPageCount]='3'  (pageDataRequest)=(getAllComplaints()) #pagination></app-pagination> -->

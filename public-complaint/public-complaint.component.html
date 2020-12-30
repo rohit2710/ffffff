@@ -1,0 +1,73 @@
+<!-- Public complaint component where Citizen will be able to see  complaint from othe user as well -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6"><div class="card mx-auto">
+            <img style="max-height:auto;width:100%;" [src]="complaint.documentPath" class="card-img-top mx-auto border" alt="...">
+            <div class="card-body py-0 bg-light">
+                <span class="fs-6 fw-bold text-primary">{{complaint.departmentName}}</span>
+                <p style="font-size:13px">{{complaint.complaintMessage}}</p>
+                <div class="row text-center ">
+                    <div class="col-12">
+                        <p class="">BY:<span class="text-muted p-2">{{complaint.citizenName}}</span> <i class="fa fa-calendar-o fa-small" aria-hidden="true"></i> <span class="fa-small mr-2">1
+                            hour ago</span></p>
+                    </div>
+                    <div class="col-6">
+                        <i class="fa fa-thumbs-o-up mr-2" (click)="like()" aria-hidden="true"></i>
+                        {{this.totalLikes}}
+                    </div>
+                    <div class="col-6">
+                        <i class="fa fa-thumbs-down" (click)="dislike()" aria-hidden="true"></i>{{this.totalDisLikes}}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="form-floating">
+                            <textarea class="form-control" #commentBox placeholder="Leave a comment here"
+                                id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Comments</label>
+                        </div>
+                        <div>
+                            <div class="float-end"> <button type="button"
+                                  (click)="addComment(commentBox)"  class="btn btn-sm btn-success mx-auto d-block float-right mt-2 ">Add Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid mb-1">
+                    <div class="row">
+                        <div>
+                            <div class="my-auto">
+                                <i class="fa fa-comments " aria-hidden="true"></i>
+                                <span class="">
+                                    Recent Comments
+                                    {{this.totalComments}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="style1">
+                    <div class="container-fluid mb-1">
+        
+                        <div class="row" *ngFor="let comment of commentsArray">
+                            <div class="col-1">
+                                <img src="http://placehold.it/80" height="30" class=" mr-0 rounded-circle img-responsive"
+                                    alt="" />
+                            </div>
+                            <div class=" offset-1 col-10 my-auto">
+                                <div class="float-left"><span>{{comment.userName}}</span><i class="fa fa-calendar-o fa-small px-2" aria-hidden="true"></i><span class="fa-small p-0 m-0">{{comment.elaspedTime}}</span></div>
+                                <small class="float-left mx-2">{{comment.message}}</small> 
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                <!-- <button  (click)="loadMoreComments()" class="btn btn-outline-primary btn-sm  d-block  form-control " role="button">Load more<i
+                        class="fa fa-refresh mx-2" aria-hidden="true"></i> </button> -->
+            </div>
+        
+        </div></div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

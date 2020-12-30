@@ -1,0 +1,76 @@
+<!-- Publicx complaint list will list all the complaint from other user  -->
+<div class="container">
+  <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6"><div *ngFor="let complaint of complaints;let i = index" class="card mx-auto my-3" style="">
+        <img style="max-height:100%;width:100%;" [src]="complaint.documentPath" class="card-img-top mx-auto border"
+          alt="...">
+        <div class="card-body py-0 bg-light">
+          <span class="fs-6 fw-bold text-primary">{{complaint.departmentName}}</span>
+          <p style="font-size:13px">{{complaint.complaintMessage}}</p>
+          <div class="row text-center ">
+            <div class="col-12">
+              <p class="">BY:<span class="text-muted p-2">{{complaint.citizenName}}</span> <i
+                  class="fa fa-calendar-o fa-small" aria-hidden="true"></i> <span
+                  class="fa-small mr-2">{{complaint.createdAt}}</span></p>
+            </div>
+            <!-- <div class="col-4">
+              <i class="fa fa-thumbs-o-up mr-2" aria-hidden="true"></i>
+              45
+            </div>
+            <div class="col-4">
+              <i class="fa fa-thumbs-down"  aria-hidden="true"></i> 47
+            </div>
+            <div class="col-4">
+              <i class="fa fa-comments " aria-hidden="true"></i> 48
+            </div> -->
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-4">
+                <i class="fa fa-thumbs-o-up mr-2" (click)="like(complaint.feedbackPostId,i)"
+                  aria-hidden="true"></i>{{complaint.totalLike}}
+              </div>
+              <div class="col-4">
+                <i class="fa fa-thumbs-down" (click)="dislike(complaint.feedbackPostId,i)"
+                  aria-hidden="true"></i>{{complaint.totalDislike}}
+              </div>
+              <div class="col-4">
+                <i class="fa fa-comments" (click)="getPublicComplaint(complaint.complaintId)" aria-hidden="true">Comment</i>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid mb-1">
+            <div class="row">
+              <div>
+                <div class="my-auto">
+                  <i class="fa fa-comments " aria-hidden="true"></i>
+                  <span class="">
+                    Recent Comments
+                    {{complaint.totalComment}}</span>
+                </div>
+              </div>
+            </div>
+            <!-- <hr class="style1"> -->
+            <!-- <div class="container-fluid mb-1">
+              <div class="row">
+                <div class="col-1">
+                  <img src="http://placehold.it/80" height="30" class=" mr-0 rounded-circle img-responsive" alt="" />
+                </div>
+                <div class=" offset-1 col-10 my-auto">
+                  <div class="float-left">Float left on all viewport sizes</div>
+                  <i class="fa fa-calendar-o fa-small" aria-hidden="true"></i> <span class="fa-small mr-2">1
+                    hour ago</span>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      
+      </div>
+      </div>
+      <div class="col-md-3"></div>
+  </div>
+</div>

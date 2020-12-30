@@ -1,0 +1,39 @@
+<!-- form for transfer complaint -->
+<div class="row radius justify-content-center">
+  <div class="col-md-8 ">
+    <div class="card border-bottom-0">
+      <div class="card-body card-bg">
+        <h1 class="text-center"> Transfer Complaint</h1>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body ">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="row  ">
+            <div class="col-sm-12">
+              <div class="input-group mb-5">
+                <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-briefcase"
+                    aria-hidden="true"></i></label>
+                <select
+                  [ngClass]="{'is-invalid': (registerForm.controls.departmentId.touched || submitted) && (registerForm.controls.departmentId.errors?.required ||registerForm.controls.departmentId.errors),
+                                'is-valid': ((registerForm.controls.departmentId.touched ) && !registerForm.controls.departmentId.errors?.required && !registerForm.controls.departmentId.errors)}"
+                  formControlName="departmentId" class="form-control" id="inputGroupSelect01">
+
+                  <option value="" selected disabled hidden>Choose Department</option>
+                  <option *ngFor="let dept of this.departments" value="{{dept.departmentId}}">
+                    {{dept.departmentName}}</option>
+                </select>
+                <div class="invalid-feedback">
+                  select department.
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success form-control mr-3">SUBMIT<span class="fa fa-paper-plane"
+              aria-hidden="true"></span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<!-- form for update employee -->
+<div class="row radius justify-content-center" *ngIf="this.registerForm !=null">
+    <div class="col-md-8 ">
+        <div class="card border-bottom-0">
+            <div class="card-body card-bg">
+                <h1 class="text-center">Update Employee <i class="fa fa-pencil" aria-hidden="true"></i> </h1>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body ">
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle"
+                    aria-hidden="true"></i></span>
+                <input type="text"
+                  [ngClass]="{'is-invalid': (registerForm.controls.name.touched || submitted) && (registerForm.controls.name.errors?.required ||registerForm.controls.name.errors),
+                                'is-valid': ((registerForm.controls.name.touched ) && !registerForm.controls.name.errors?.required && !registerForm.controls.name.errors)}"
+                  formControlName="name" class="form-control" placeholder="Name" aria-label="Username"
+                  aria-describedby="basic-addon1">
+                <div class="invalid-feedback">
+                  name is required & only charactors are allowed.
+                </div>
+              </div>
+            </div>
+            <!-- registerForm.controls.fname.touched -->
+
+            <div class="col-sm-12">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"
+                    aria-hidden="true"></i></span>
+                <input type="text"
+                  [ngClass]="{'is-invalid': (registerForm.controls.email.touched || submitted) && (registerForm.controls.email.errors?.required ||registerForm.controls.email.errors),
+                                'is-valid': ((registerForm.controls.email.touched ) && !registerForm.controls.email.errors?.required && !registerForm.controls.email.errors)}"
+                  formControlName="email" class="form-control" placeholder="Email address" aria-label="Username"
+                  aria-describedby="basic-addon1">
+                <div class="invalid-feedback">
+                  email is mandatory field. Please enter valid email for eg. abc@gmail.com
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                <input type="text"
+                  [ngClass]="{'is-invalid': (registerForm.controls.mobileNo.touched || submitted) && (registerForm.controls.mobileNo.errors?.required ||registerForm.controls.mobileNo.errors),
+                                'is-valid': ((registerForm.controls.mobileNo.touched ) && !registerForm.controls.mobileNo.errors?.required && !registerForm.controls.mobileNo.errors)}"
+                  formControlName="mobileNo" class="form-control" placeholder="Mobile Number" aria-label="Username"
+                  aria-describedby="basic-addon1">
+                <div class="invalid-feedback">
+                  only digits are allowed and must start with number 6 onwards.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-server"
+                    aria-hidden="true"></i></label>
+                <select formControlName="role" class="form-select" id="inputGroupSelect01">
+                  <!-- <option selected disabled>Choose Role</option> -->
+                  <option value="DEPARTMENT HEAD">DEPARTMENT HEAD</option>
+                </select>
+                <div class="invalid-feedback">
+                  select designation.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-server"
+                    aria-hidden="true"></i></label>
+                <select formControlName="departmentId" class="form-select" id="inputGroupSelect01">
+                  <option value="" selected disabled>Choose Department</option>
+                  <option *ngFor="let dept of this.departments" value="{{dept.departmentId}}">
+                    {{dept.departmentName}}</option>
+                </select>
+                <div class="invalid-feedback">
+                  select department.
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success form-control mr-3">SUBMIT<span class="fa fa-paper-plane"
+              aria-hidden="true"></span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

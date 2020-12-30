@@ -1,0 +1,48 @@
+<!-- form for update department -->
+<div class="row radius justify-content-center">
+  <div class="col-md-8 ">
+    <div class="card border-bottom-0">
+      <div class="card-body card-bg">
+        <h1 class="text-center"> Update Department</h1>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body ">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="row  ">
+            <div class="col-sm-12">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle"
+                    aria-hidden="true"></i></span>
+                <input type="text"
+                  [ngClass]="{'is-invalid': (registerForm.controls.departmentName.touched || submitted) && (registerForm.controls.departmentName.errors?.required ||registerForm.controls.departmentName.errors),
+                                'is-valid': ((registerForm.controls.departmentName.touched ) && !registerForm.controls.departmentName.errors?.required && !registerForm.controls.departmentName.errors)}"
+                  formControlName="departmentName" class="form-control" placeholder="New Department Name"
+                  aria-label="Username" aria-describedby="basic-addon1">
+                <div class="invalid-feedback">
+                  department name is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group mb-3">
+                <h5>Department Description</h5>
+                <textarea
+                  [ngClass]="{'is-invalid': (registerForm.controls.description.touched || submitted) && (registerForm.controls.description.errors?.required ||registerForm.controls.description.errors),
+                                'is-valid': ((registerForm.controls.description.touched ) && !registerForm.controls.description.errors?.required && !registerForm.controls.description.errors)}"
+                  formControlName="description" class="form-control" placeholder="Description"
+                  id="exampleFormControlTextarea1"></textarea>
+                <div class="invalid-feedback">
+                  please give brief information about department.
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success form-control mr-3">Update<span class="fa fa-paper-plane"
+              aria-hidden="true"></span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

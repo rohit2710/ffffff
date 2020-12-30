@@ -1,0 +1,24 @@
+<!-- This component will show chart based on the selected department and all department -->
+<br>
+<select  class="form-select mx-auto d-block w-25 mb-4" #deptId (change)="getData(deptId.value)" aria-label="Default select example">
+    <option selected value="0" >All Complaints</option>
+    <option *ngFor="let department of departmentArray"  [value]='department.departmentId'>{{department.departmentName}}</option>
+  </select>
+<div class="container " *ngIf="this.graphData != undefined">
+    <div class="row gx-md-8 text-center d-flex  gy-4">
+        <div class="col-md-6  d-flex justify-content-center">
+            <div class="p-3 w-50 border  bg-light">Total Complaints   {{this.totalComplaints}}  </div>
+        </div>
+        <div class="col-md-6  d-flex justify-content-center" *ngFor="let complaintCount of this.graphData.statusData">
+            <div class="p-3  w-50 border  bg-light">{{complaintCount.status}}  {{complaintCount.count}}</div>
+        </div>
+    </div>
+    <div class="row p-2 my-5 " >
+        <div class="col-lg-6 ">
+            <app-graph [chartData]='this.graphData' [charType]="'bar'" #barChart ></app-graph>
+        </div>
+        <div class="col-lg-6">
+            <app-graph [chartData]='this.graphData' [charType]="'pie'" #pieChart ></app-graph>
+        </div>
+    </div>
+</div>

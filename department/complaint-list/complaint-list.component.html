@@ -1,0 +1,55 @@
+<!-- will show complaints which are not resolved -->
+<app-chat-window [chatId]="this.chatId" #chatWindow></app-chat-window>
+<div class="container-fluid">
+  <div class="row">
+    <div class>
+          <h1 class="display-6 text-center"> Handle Complaints <div class="d-inline"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div></h1>
+      </div>
+    <div class="col-sm-12 table-responsive">
+      <table class="table">
+        <thead class="thead text-center">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">UserEmail</th>
+            <th scope="col">Message</th>
+            <th scope="col">RegisterDate</th>
+            <th scope="col">ViewDocument</th>
+            <th scope="col">Status</th>
+            <th scope="col">Update Status</th>
+            <th>Transfer</th>
+            <th>Remarks</th>
+            <th>More</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deptcomplaint of complaints; let i = index">
+            <!-- <td>{{i+1}}</td> -->
+            <th sc ope="row">{{deptcomplaint.complaintId}}</th>
+            <td>{{deptcomplaint.showCitizen?.email}}</td>
+            <td>{{deptcomplaint.complaintMessage}}</td>
+            <td><div class="d-inline">{{deptcomplaint.createdAt|date}}</div></td>
+
+            <td><a class="btn text-dark mb-1 " *ngIf="deptcomplaint.documentPath != null && deptcomplaint.documentPath != ''" [href]="this.fileBaseUrl+deptcomplaint.documentPath" ><div class="d-inline">{{deptcomplaint.documentPath }} <i class="fa fa-download" aria-hidden="true"></i></div></a></td>
+            <!-- <td>{{deptcomplaint.documentPath ? deptcomplaint.documentPath : 'NOT AVALABLE'}}</td> -->
+            <td>{{deptcomplaint.complaintStatus}}</td>
+            <td>
+              <select class="btn btn-sm btn-danger" #updatestatus aria-label="Default select example"
+                (change)="updateStatus(deptcomplaint.complaintId,i,updatestatus.value)">
+                <option value="" selected disabled hidden> Update Status</option>
+                <option value="RESOLVED">RESOLVED</option>
+                <option value="PENDING">PENDING</option>
+                <!-- <option value="3">PROCESSING</option> -->
+              </select>
+            </td>
+            <td><a class="btn btn-sm btn-outline-success d-block" (click)="transferComplaint(deptcomplaint.complaintId)"><i class="fa fa-share-square-o" aria-hidden="true"></i></a></td>
+            <td><a class="btn btn-sm btn-outline-primary d-block" (click)="showRemark(deptcomplaint.chatId)"><i class="fa fa-commenting" aria-hidden="true"></i></a></td>
+            <td><a class="btn btn-sm btn-outline-dark d-block" (click)="showMore(deptcomplaint)"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <app-pagination [totalPageCount]='4'  (pageDataRequest)=(getAllDeptComplaintsList()) #pagination></app-pagination> -->
